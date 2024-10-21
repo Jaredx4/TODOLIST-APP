@@ -5,10 +5,13 @@ import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../assets/firebase/config';
 import { Link } from 'react-router-dom';
 import { Header } from './Header';
+import { useNavigate } from 'react-router-dom';
 
 export const Register = () => {
   
     const {register,handleSubmit} = useForm();
+
+    const navigate = useNavigate();
 
     const onSubmitForm = (data)=>{
 
@@ -22,6 +25,7 @@ createUserWithEmailAndPassword(auth, data.email, data.password, data.confirmPass
     const user = userCredential.user;
     alert("Se ha realizado el registro con exito");
     // ...
+    navigate('/Login'); // Redirige a la página de inicio de sesión
   })
   .catch((error) => {
     const errorCode = error.code;

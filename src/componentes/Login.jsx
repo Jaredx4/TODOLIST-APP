@@ -4,10 +4,12 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../assets/firebase/config';
 import { Link } from 'react-router-dom';
 import { Header } from './Header';
+import { useNavigate } from 'react-router-dom';
 
 export const Login = () => {
 
     const {register, handleSubmit}=useForm();
+    const navigate = useNavigate();
 
     const onSubmitForm=(data)=>{
 
@@ -18,6 +20,7 @@ export const Login = () => {
           // Signed in 
           const user = userCredential.user;
           alert("Se inicio sesion con exito");
+          navigate('/PagePpal'); // Redirige a la página de inicio de sesión
           // ...
         })
         .catch((error) => {
